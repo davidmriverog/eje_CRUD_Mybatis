@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="Tcontactos">
+    
+    <resultMap id="result" type="com.mybatis.models.Tcontactos">
+        <result property="id" column="ID" />
+        <result property="nombres" column="NOMBRES" />
+        <result property="apellidos" column="APELLIDOS" />
+        <result property="numeros" column="NUMEROS" />
+    </resultMap>
+    
+    <!-- Listamos Todos los Registros -->
+    <select id="getAll" resultMap="result">
+        SELECT * FROM CONTACTOS 
+    </select>
+    
+    <!-- Listamos Un Registro por el ID -->
+    <select id="getById" parameterType="int" resultMap="result">
+        SELECT * FROM CONTACTOS WHERE ID = #{id}
+    </select>
+    
+    <!-- Insercion de Datos -->
+    <insert id="insert" parameterType="com.mybatis.models.Tcontactos">
+        INSERT INTO CONTACTOS (NOMBRES, APELLIDOS, NUMEROS)
+            VALUES(#{nombres}, #{apellidos}, #{numeros});
+    </insert>
+    
+    <!-- Actualizacion de Datos -->
+    <update id="update" parameterType="com.mybatis.models.Tcontactos">
+        UPDATE CONTACTOS
+        SET
+            NOMBRES = #{nombres},
+            APELLIDOS = #{apellidos} ,
+            NUMEROS = #{numeros}
+        WHERE ID = #{id}
+    </update>
+    
+    <!-- Eliminacion del Registro -->
+    <delete id="delete" parameterType="com.mybatis.models.Tcontactos">
+        DELETE from CONTACTOS WHERE ID = #{id};
+    </delete>
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>CRUD JSF | Mybatis</title>
+    </h:head>
+    <h:body>
+        <h:form id="frmContactos" >
+            <p:growl id="mensajeGeneral" showDetail="true" />
+            <p:panelGrid columns="2" style="margin: auto;width: 100%">  
+                
+                <h:panelGroup>
+                    
+                    <p:panel header="Panel Busqueda por ID" id="panelbusqueda">
+                        <h:panelGrid columns="3" cellpadding="5">
+                            <h:outputLabel for="txtId" value="Ingrese el Id del Contacto:" />
+                            <p:spinner id="txtId" value="#{mbContactos.valorID}" label="txtId">                               
+                                <p:ajax event="blur" listener="#{mbContactos.buscarContactosById()}" />
+                            </p:spinner>
+                        </h:panelGrid>
+                    </p:panel>
+                   
+                   
+                </h:panelGroup>
+
+                <h:panelGroup>
+                    <p:panel id="panelContactos" header="Formulario Contactos">
+                        <h:panelGrid columns="2" cellpadding="5">
+                            
+                            <p:outputLabel for="txtNombres" value="Ingrese Nombres:" />
+                            <p:inputText id="txtNombres" value="#{mbContactos.tcontactos.nombres}" required="true" label="txtNombres">
+                                <f:validateLength minimum="2" />
+                            </p:inputText>
+                            
+                            <p:outputLabel for="txtApellidos" value="Ingrese Apellidos:" />
+                            <p:inputText id="txtApellidos" value="#{mbContactos.tcontactos.apellidos}" required="true" label="txtApellidos">
+                                <f:validateLength minimum="2" />
+                            </p:inputText>
+                            
+                            <p:outputLabel for="txtNumeros" value="Ingrese Numeros:" />
+                            <p:inputText id="txtNumeros" value="#{mbContactos.tcontactos.numeros}" required="true" label="txtNumeros">
+                                <f:validateDoubleRange minimum="5" maximum="8" />
+                            </p:inputText>
+                            
+                            <p:commandButton value="Registrar" disabled="#{mbContactos.disabledRegistro}" />
+                            <p:commandButton value="Actualizar" disabled="#{mbContactos.disabledActualizacion}" />
+                        </h:panelGrid>
+                    </p:panel>
+                </h:panelGroup>
+            </p:panelGrid>
+            <hr />
+            <p:panelGrid columns="1" style="margin: auto;width: 100%">
+                <h1>..:: Lista de Contactos ::..</h1>
+                <p:dataTable value="#{mbContactos.allContactos}" var="cont">
+                    <p:column headerText="ID">
+                        <h:outputText value="#{cont.id}" />
+                    </p:column>
+                    <p:column headerText="NOMBRES">
+                        <h:outputText value="#{cont.nombres}" />
+                    </p:column>
+                    <p:column headerText="APELLIDOS">
+                        <h:outputText value="#{cont.apellidos}" />
+                    </p:column>
+                    <p:column headerText="NUMEROS">
+                        <h:outputText value="#{cont.numeros}" />
+                    </p:column>
+                    <p:column headerText="">
+                        <p:commandButton value="Remover ID: #{cont.id}" icon="ui-icon-arrowrefresh-1-w" />                   
+                    </p:column>
+                </p:dataTable> 
+            </p:panelGrid>
+        </h:form>
+        
+    </h:body>
+</html>
+
