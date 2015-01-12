@@ -10,7 +10,7 @@
                 <property name="driver" value="com.mysql.jdbc.Driver" />
                 <property name="url" value="jdbc:mysql://localhost:3306/bd_crud" />
                 <property name="username" value="root" />
-                <property name="password" value="123" />
+                <property name="password" value="asd789" />
             </dataSource>            
         </environment>        
     </environments>

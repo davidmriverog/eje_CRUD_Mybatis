@@ -14,12 +14,12 @@
     
     <!-- Listamos Todos los Registros -->
     <select id="getAll" resultMap="result">
-        SELECT * FROM CONTACTOS 
+        SELECT * FROM contactos
     </select>
     
     <!-- Listamos Un Registro por el ID -->
     <select id="getById" parameterType="int" resultMap="result">
-        SELECT * FROM CONTACTOS WHERE ID = #{id}
+        SELECT * FROM contactos WHERE id = #{id}
     </select>
     
     <!-- Insercion de Datos -->
